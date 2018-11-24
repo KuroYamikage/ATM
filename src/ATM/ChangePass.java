@@ -24,10 +24,11 @@ public class ChangePass extends javax.swing.JFrame {
     ResultSet rs;
 
     int curRow = 0;
-
+    int userCardNumber;
     public ChangePass() {
         initComponents();
         doConnect();
+        this.userCardNumber = cardNumber; 
     }
 
     /**
@@ -150,12 +151,12 @@ public class ChangePass extends javax.swing.JFrame {
 
     private void jbtnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnConfirmActionPerformed
 
-        int account = 2018001;
+        
         int oldPin = Integer.parseInt(String.valueOf(jpfOld.getPassword()));
         int newPin1 = Integer.parseInt(String.valueOf(jpfNew.getPassword()));
         int newPin2 = Integer.parseInt(String.valueOf(jpfNew2.getPassword()));
         try {
-            rs = stmt.executeQuery("SELECT * FROM APP.CUSTOMER_DATA WHERE CARD_NUMBER = " + account);
+            rs = stmt.executeQuery("SELECT * FROM APP.CUSTOMER_DATA WHERE CARD_NUMBER = " + userCardNumber);
             rs.first();
             int pin = rs.getInt("PIN");
 
