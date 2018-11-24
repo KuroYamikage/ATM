@@ -24,9 +24,11 @@ public class Deposit extends javax.swing.JFrame {
     Connection con;
     Statement stmt;
     ResultSet rs;
+    int userCardNumber;
     public Deposit() {
         initComponents();
         doConnect();
+        this.userCardNumber = cardNumber;
     }
 
     /**
@@ -141,10 +143,10 @@ public class Deposit extends javax.swing.JFrame {
 int pinReal = 1234;
     private void jbtnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnConfirmActionPerformed
         try{
-        int account = 2018001;
+        
         double deposit=Double.parseDouble(jtxtfAmount.getText());
         int pin = Integer.parseInt(String.valueOf(jpfPIN.getPassword()));
-         rs = stmt.executeQuery("SELECT * FROM APP.CUSTOMER_DATA WHERE CARD_NUMBER = " + account);
+         rs = stmt.executeQuery("SELECT * FROM APP.CUSTOMER_DATA WHERE CARD_NUMBER = " + userCardNumber);
             rs.first();
             int pindb = rs.getInt("PIN");
             if(pin == pindb){

@@ -23,9 +23,11 @@ public class MainMenu extends javax.swing.JFrame {
     Statement stmt;
     ResultSet rs;
     int curRoiw=0;
+    int userCardNumber;
     public MainMenu() {
         initComponents();
         doConnect();
+        this.userCardNumber = cardNumber;
     }
     public void doConnect(){
     try{
